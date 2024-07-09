@@ -84,7 +84,8 @@ const config = tseslint.config(
       '@typescript-eslint/no-unsafe-return': 'off',
       '@typescript-eslint/no-unused-vars': 'off',
       '@typescript-eslint/consistent-type-imports': 'error',
-      '@typescript-eslint/triple-slash-reference': 'off'
+      '@typescript-eslint/triple-slash-reference': 'off',
+      '@typescript-eslint/no-misused-promises': ['error', { checksVoidReturn: false }]
     }
   },
   {

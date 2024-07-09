@@ -14,13 +14,16 @@
   },
   "dependencies": {
     "@ark-ui/react": "^3.5.0",
+    "@hookform/resolvers": "^3.9.0",
     "@pandacss/dev": "^0.42.0",
     "@park-ui/panda-preset": "^0.38.1",
     "axios": "^1.7.2",
     "next": "^15.0.0-rc.0",
     "npm": "^10.8.1",
     "react": "^19.0.0-rc-df783f9ea1-20240708",
-    "react-dom": "^19.0.0-rc-df783f9ea1-20240708"
+    "react-dom": "^19.0.0-rc-df783f9ea1-20240708",
+    "react-hook-form": "^7.52.1",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@eslint/compat": "^1.1.0",

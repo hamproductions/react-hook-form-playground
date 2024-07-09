@@ -1,5 +1,6 @@
-import { defineConfig } from "@pandacss/dev";
-import { createPreset } from "@park-ui/panda-preset";
+import { defineConfig } from '@pandacss/dev';
+import { createPreset } from '@park-ui/panda-preset';
+import { input } from 'styled-system/recipes';
 
 export default defineConfig({
   // Whether to use css reset
@@ -8,27 +9,38 @@ export default defineConfig({
   presets: [
     '@pandacss/preset-base',
     createPreset({
-      accentColor: 'brown',
+      accentColor: 'red',
       grayColor: 'mauve',
-      borderRadius: '2xl',
-    }),
+      borderRadius: 'xl',
+      additionalColors: ['blue', 'green']
+    })
   ],
 
   // Where to look for your css declarations
-  include: ["./src/components/**/*.{ts,tsx,js,jsx}", "./src/app/**/*.{ts,tsx,js,jsx}"],
+  include: ['./src/components/**/*.{ts,tsx,js,jsx}', './src/app/**/*.{ts,tsx,js,jsx}'],
 
   // Files to exclude
   exclude: [],
 
   // Useful for theme customization
   theme: {
-    extend: {},
+    extend: {}
+  },
+
+  staticCss: {
+    recipes: {
+      input: [
+        {
+          size: ['*']
+        }
+      ]
+    }
   },
 
   lightningcss: true,
 
   // The output directory for your css system
-  outdir: "styled-system",
+  outdir: 'styled-system',
 
-  jsxFramework: "react"
+  jsxFramework: 'react'
 });

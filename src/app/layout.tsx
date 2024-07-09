@@ -17,7 +17,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Stack minH="screen">
-          <Container display="flex" flex={1}>
+          <Container display="flex" flex={1} w="full" maxW="breakpoint-xl" _print={{ padding: 0 }}>
             {children}
           </Container>
         </Stack>
