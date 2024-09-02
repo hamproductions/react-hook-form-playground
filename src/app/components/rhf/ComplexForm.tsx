@@ -1,12 +1,11 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Controller, useFieldArray, useForm } from 'react-hook-form';
+import { useFieldArray, useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 import { FormInput } from '../common/FormInput';
 import { FormField } from '../common/FormField';
 import { ResumePreview } from '../common/ResumePreview';
-import { DatePickerInput } from '../common/DatePickerInput';
 import type { ResumeData } from '@/app/schemas/resume-form';
 import { resumeSchema } from '@/app/schemas/resume-form';
 import { Heading } from 'components/ui/heading';
@@ -21,11 +20,15 @@ export function ComplexForm() {
     resolver: zodResolver(resumeSchema)
   });
   const { errors } = formState;
+
   const skills = useFieldArray({ control, name: 'skills' });
   const experience = useFieldArray({ control, name: 'experience' });
   const education = useFieldArray({ control, name: 'education' });
 
-  const onSubmit = (data: ResumeData) => {
+  const onSubmit = async (data: ResumeData) => {
+    if (formState.isSubmitting) return;
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    console.log('hoge');
     localStorage.setItem('form-data', JSON.stringify(data));
     setResult(data);
   };
@@ -66,6 +69,7 @@ export function ComplexForm() {
                 autoComplete="given-name"
                 {...register('firstName', { required: true })}
               />
+
               <FormInput
                 label="Middle Name"
                 error={errors.middleName?.message}
@@ -79,6 +83,7 @@ export function ComplexForm() {
                 {...register('lastName', { required: true })}
               />
             </HStack>
+
             <HStack alignItems="flex-start">
               <FormInput
                 label="Email"
@@ -230,7 +235,7 @@ export function ComplexForm() {
                         w="full"
                         {...register(`experience.${index}.jobTitle`, { required: true })}
                       />
-                      <Controller
+                      {/* <Controller
                         control={control}
                         name={`experience.${index}.date`}
                         render={({ field }) => {
@@ -250,7 +255,7 @@ export function ComplexForm() {
                             />
                           );
                         }}
-                      ></Controller>
+                      ></Controller> */}
                     </HStack>
                     <FormField
                       label="Description"
@@ -282,7 +287,7 @@ export function ComplexForm() {
             </Stack>
             <Divider />
             <HStack>
-              <Button>Make Resume</Button>
+              <Button disabled={formState.isSubmitting}>Make Resume</Button>
             </HStack>
           </Stack>
         </styled.form>
