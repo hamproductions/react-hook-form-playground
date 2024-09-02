@@ -83,7 +83,13 @@ export function ComplexForm() {
                 {...register('lastName', { required: true })}
               />
             </HStack>
-
+            <FormInput
+              label="Age"
+              error={errors.age?.message}
+              autoComplete="age"
+              pattern="\b\d+([\.,]\d+)?"
+              {...register('age', { required: true })}
+            />
             <HStack alignItems="flex-start">
               <FormInput
                 label="Email"

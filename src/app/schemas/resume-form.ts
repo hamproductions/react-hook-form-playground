@@ -1,9 +1,10 @@
 import { z } from 'zod';
 
 export const resumeSchema = z.object({
-  firstName: z.string().min(1, 'First Name is required'),
+  firstName: z.string().min(1, '名前入力してください'),
   middleName: z.string(),
   lastName: z.string().min(1, 'Last Name is required'),
+  age: z.coerce.number({ invalid_type_error: '半角数字ください' }).gt(1),
   email: z.union([z.literal(''), z.string().email()]),
   phone: z.string(),
   web: z.union([z.literal(''), z.string().url()]),

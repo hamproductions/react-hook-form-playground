@@ -9,7 +9,7 @@ import { Code } from 'components/ui/code';
 import { Stack, styled } from 'styled-system/jsx';
 
 export function VanillaLoginForm() {
-  const [results, setResults] = useState<LoginData>();
+  const [results, setResults] = useState<LoginData>({} as LoginData);
 
   //TODO: Implement form function
 
@@ -27,13 +27,13 @@ export function VanillaLoginForm() {
           <FormInput
             label="Email"
             value={results?.email}
-            onChange={(e) => setResults((s) => ({ ...s, email: e.target.value }))}
+            onChange={(e) => setResults((s) => ({ ...s, email: e.target.value ?? '' }))}
             name="email"
           />
           <FormInput
             label="Password"
             value={results?.password}
-            onChange={(e) => setResults((s) => ({ ...s, password: e.target.value }))}
+            onChange={(e) => setResults((s) => ({ ...s, password: e.target.value ?? '' }))}
             type="password"
             name="password"
           />
