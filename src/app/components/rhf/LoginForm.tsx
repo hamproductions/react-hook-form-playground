@@ -1,7 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 import type { LoginData } from '../../schemas/login-form';
 import { loginFormSchema } from '../../schemas/login-form';
@@ -12,7 +12,7 @@ import { Code } from 'components/ui/code';
 
 export function LoginForm() {
   const [results, setResults] = useState<LoginData>();
-  const { register, formState, handleSubmit } = useForm<LoginData>({
+  const { control, register, formState, handleSubmit } = useForm<LoginData>({
     resolver: zodResolver(loginFormSchema)
   });
   const { isValid, errors } = formState;
@@ -40,6 +40,13 @@ export function LoginForm() {
             type="password"
             {...register('password', { required: true })}
           />
+          <Controller
+            control={control}
+            name="save-password"
+            render={({ field: { value, onChange } }) => (
+              <input type="checkbox" checked={value} onChange={onChange} />
+            )}
+          ></Controller>
           <Button type="submit">Login</Button>
         </Stack>
       </styled.form>

@@ -15,13 +15,31 @@ export function VanillaLoginForm() {
 
   //TODO: Implement Validation
 
+  const handleSubmit = () => {
+    // Validation
+    console.log(results);
+  };
+
   return (
     <Stack>
-      <styled.form>
+      <styled.form onSubmit={(e) => e.preventDefault()}>
         <Stack>
-          <FormInput label="Email" name="email" />
-          <FormInput label="Password" type="password" name="password" />
-          <Button type="submit">Login</Button>
+          <FormInput
+            label="Email"
+            value={results?.email}
+            onChange={(e) => setResults((s) => ({ ...s, email: e.target.value }))}
+            name="email"
+          />
+          <FormInput
+            label="Password"
+            value={results?.password}
+            onChange={(e) => setResults((s) => ({ ...s, password: e.target.value }))}
+            type="password"
+            name="password"
+          />
+          <Button type="submit" onChange={() => handleSubmit()}>
+            Login
+          </Button>
         </Stack>
       </styled.form>
       {results && (
